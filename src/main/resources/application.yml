@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    active: dev
+
+---
+
+spring:
+  profiles: dev
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC
+    username: root
+    password: Dev9182
+
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQL8Dialect
+      ddl-auto: update
+    show-sql: true
+
+name: spring-data-sample-dev
+enviroment: dev
+
+---
+
+spring:
+  profiles: test
+name: spring-data-sample-test
+enviroment: test

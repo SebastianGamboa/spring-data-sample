@@ -8,14 +8,13 @@ spring:
   profiles: dev
 
   datasource:
-    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC
-    username: root
-    password: Dev9182
+    url: jdbc:postgresql://localhost:5432/spring_db
+    username: postgres
+    password: dev9182
 
   jpa:
     hibernate:
-      dialect: org.hibernate.dialect.MySQL8Dialect
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
 
 name: spring-data-sample-dev

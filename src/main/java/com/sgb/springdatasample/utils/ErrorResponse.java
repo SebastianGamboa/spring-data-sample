@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * ErrorResponse
- * 
  * @Sebastián Gamboa
  */
 @Getter

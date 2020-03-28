@@ -3,8 +3,6 @@ package com.sgb.springdatasample.services;
 import com.sgb.springdatasample.entities.User;
 
 /**
- * UserService
- * 
  * @author Sebastián Gamboa
  */
 public interface UserService {
@@ -13,5 +11,9 @@ public interface UserService {
 
     public User getByEmail(String email);
 
+    public User update(String email, User user);
+
     public User save(User user);
+
+    public void delete(String email);
 }

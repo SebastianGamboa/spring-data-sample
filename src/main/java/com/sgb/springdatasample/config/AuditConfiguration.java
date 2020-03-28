@@ -1,5 +1,6 @@
 package com.sgb.springdatasample.config;
 
+import com.sgb.springdatasample.entities.User;
 import com.sgb.springdatasample.services.AuditorAwareImpl;
 
 import org.springframework.context.annotation.Bean;
@@ -16,7 +17,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaAuditing
 public class AuditConfiguration {
     @Bean
-    public AuditorAware<String> auditorProvider() {
+    public AuditorAware<User> auditorProvider() {
         return new AuditorAwareImpl();
     }
 }

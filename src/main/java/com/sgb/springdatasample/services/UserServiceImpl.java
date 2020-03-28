@@ -7,14 +7,12 @@ import com.sgb.springdatasample.utils.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
- * UserServiceImpl
- * 
  * @author Sebastián Gamboa
  */
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -32,8 +30,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User update(String email, User newUser) throws ResourceNotFoundException {
+        return userRepository.findByEmail(email)
+            .map(user -> {
+                user.setEmail(newUser.getEmail());
+                user.setName(newUser.getName());
+                return save(user);
+            })
+            .orElseThrow(() -> new ResourceNotFoundException("User", "email", email));
+    }
+
+    @Override
     public User save(User user) {
         return userRepository.save(user);
+    }
+
+    @Override
+    public void delete(String email) throws ResourceNotFoundException {
+        var user = userRepository.findByEmail(email);
+        if (user.isPresent())
+            userRepository.delete(user.get());
+        else
+            throw new ResourceNotFoundException("User", "email", email);
     }
 
 }

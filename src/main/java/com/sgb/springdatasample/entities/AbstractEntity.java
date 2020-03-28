@@ -2,34 +2,23 @@ package com.sgb.springdatasample.entities;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
+import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
- * AbstractEntity
- * 
  * @author Sebastián Gamboa
  */
 @MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public abstract class AbstractEntity {
 
-    @Column(nullable = false, updatable = false)
     @CreatedDate
     private LocalDateTime createdAt;
 
     @LastModifiedDate
     private LocalDateTime modifiedAt;
-
-    @Column(length = 100, updatable = false)
-    @CreatedBy
-    private String createdBy;
-
-    @Column(length = 100)
-    @LastModifiedBy
-    private String modifiedBy;
 }
